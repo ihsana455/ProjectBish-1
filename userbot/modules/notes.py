@@ -17,10 +17,10 @@ async def notes_active(svd):
         from userbot.modules.sql_helper.notes_sql import get_notes
     except AttributeError:
         return await svd.edit("`Running on Non-SQL mode!`")
-    message = "`There are no saved notes in this chat`"
+    message = "`Tidak ada catatan mantan disimpan disini`"
     notes = get_notes(svd.chat_id)
     for note in notes:
-        if message == "`There are no saved notes in this chat`":
+        if message == "`Tidak ada catatan mantan`":
             message = "Notes saved in this chat:\n"
             message += "`#{}`\n".format(note.keyword)
         else:
@@ -37,10 +37,10 @@ async def remove_notes(clr):
         return await clr.edit("`Running on Non-SQL mode!`")
     notename = clr.pattern_match.group(1)
     if rm_note(clr.chat_id, notename) is False:
-        return await clr.edit("`Couldn't find note:` **{}**".format(notename))
+        return await clr.edit("`Tidak menemukan Catatan Mantan :` **{}**".format(notename))
     else:
         return await clr.edit(
-            "`Successfully deleted note:` **{}**".format(notename))
+            "`Berhasil menghapus kenangan mantan:` **{}**".format(notename))
 
 
 @register(outgoing=True, pattern=r"^\.save (\w*)")
@@ -58,7 +58,7 @@ async def add_note(fltr):
         if BOTLOG_CHATID:
             await fltr.client.send_message(
                 BOTLOG_CHATID, f"#NOTE\nCHAT ID: {fltr.chat_id}\nKEYWORD: {keyword}"
-                "\n\nThe following message is saved as the note's reply data for the chat, please do NOT delete it !!"
+                "\n\n`Untuk mengikuti catatan mantan yang anda kirimkan, tolong jangan dihapus catatan ini !`"
             )
             msg_o = await fltr.client.forward_messages(entity=BOTLOG_CHATID,
                                                        messages=msg,
@@ -119,7 +119,7 @@ async def kick_marie_notes(kick):
     bot_type = kick.pattern_match.group(1).lower()
     if bot_type not in ["marie", "rose"]:
         return await kick.edit("`That bot is not yet supported!`")
-    await kick.edit("```Will be kicking away all Notes!```")
+    await kick.edit("`Saya akan menghapus semua catatan mantan`")
     await sleep(3)
     resp = await kick.get_reply_message()
     filters = resp.text.split("-")[1:]
@@ -131,10 +131,10 @@ async def kick_marie_notes(kick):
             await kick.reply("/clear %s" % (i.strip()))
         await sleep(0.3)
     await kick.respond(
-        "```Successfully purged bots notes yaay!```\n Gimme cookies!")
+        "```Berhasil Purge Catatan mantan bersama Daeng Server Bot!```")
     if BOTLOG:
         await kick.client.send_message(
-            BOTLOG_CHATID, "I cleaned all Notes at " + str(kick.chat_id))
+            BOTLOG_CHATID, "Saya menghapus semua catatan mantan di " + str(kick.chat_id))
 
 
 CMD_HELP.update({
