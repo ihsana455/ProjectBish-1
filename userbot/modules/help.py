@@ -17,7 +17,7 @@ async def help(event):
         if args in CMD_HELP:
             await event.edit(str(CMD_HELP[args]))
         else:
-            await event.edit("Lu salah mulu cok -_- masukin yang bener module nya ... hadehh")
+            await event.edit("`Hadehhh ente -_- kelamaan jomlo ya gini, masukin module aja salah wkwk`")
     else:
         head = "**Help for** [DaengServer](https://github.com/daenghunter/ProjectBish-1)"
         head2 = "Silahkan menggunakan module yang disediakan dibawah :)"
