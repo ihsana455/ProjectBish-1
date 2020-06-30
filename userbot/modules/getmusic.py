@@ -25,10 +25,10 @@ async def _(event):
     song = event.pattern_match.group(1)
     chat = "@WooMaiBot"
     link = f"/netease {song}"
-    await event.edit("```Getting Your Music```")
+    await event.edit("```Sedang mengambil musik anda```")
     async with bot.conversation(chat) as conv:
           await asyncio.sleep(2)
-          await event.edit("`Downloading...Please wait`")
+          await event.edit("`Proses download... Tolong ditunggu`")
           try:
               msg = await conv.send_message(link)
               response = await conv.get_response()
@@ -36,9 +36,9 @@ async def _(event):
               """ - don't spam notif - """
               await bot.send_read_acknowledge(conv.chat_id)
           except YouBlockedUserError:
-              await event.reply("```Please unblock @WooMaiBot and try again```")
+              await event.reply("```Silahkan Unblock @WooMaiBot dan coba kembali```")
               return
-          await event.edit("`Sending Your Music...`")
+          await event.edit("`Sedang mengirimkan mussik yang anda mau`")
           await asyncio.sleep(3)
           await bot.send_file(event.chat_id, respond)
     await event.client.delete_messages(conv.chat_id,
@@ -52,9 +52,9 @@ async def _(event):
         return
     d_link = event.pattern_match.group(1)
     if ".com" not in d_link:
-        await event.edit("` I need a link to download something pro.`**(._.)**")
+        await event.edit("`Saya butuh Link untuk download music yang anda mau`**(._.)**")
     else:
-        await event.edit("**Initiating Download!**")
+        await event.edit("**Sedang Dalam Pengecekan!**")
     chat = "@MusicHuntersBot"
     async with bot.conversation(chat) as conv:
           try:
@@ -66,7 +66,7 @@ async def _(event):
               """ - don't spam notif - """
               await bot.send_read_acknowledge(conv.chat_id)
           except YouBlockedUserError:
-              await event.edit("**Error:** `unblock` @MusicHuntersBot `and retry!`")
+              await event.edit("**Error:** `Unblock` @MusicHuntersBot Dan `Coba Lagi!`")
               return
           await bot.send_file(event.chat_id, song, caption=details.text)
           await event.client.delete_messages(conv.chat_id,
@@ -80,10 +80,10 @@ async def _(event):
         return
     link = event.pattern_match.group(1)
     chat = "@SpotifyMusicDownloaderBot"
-    await event.edit("```Getting Your Music```")
+    await event.edit("```Sedang mengambil musik yang anda inginkan```")
     async with bot.conversation(chat) as conv:
           await asyncio.sleep(2)
-          await event.edit("`Downloading music taking some times,  Stay Tuned.....`")
+          await event.edit("`Sedang Di Download, Stay disini aja`")
           try:
               response = conv.wait_event(events.NewMessage(incoming=True,from_users=752979930))
               msg = await bot.send_message(chat, link)
@@ -93,7 +93,7 @@ async def _(event):
               """ - don't spam notif - """
               await bot.send_read_acknowledge(conv.chat_id)
           except YouBlockedUserError:
-              await event.reply("```Please unblock @SpotifyMusicDownloaderBot and try again```")
+              await event.reply("```Tolong DiUnblock @SpotifyMusicDownloaderBot dan coba lagi```")
               return
           await bot.forward_messages(event.chat_id, respond.message)
     await event.client.delete_messages(conv.chat_id,
@@ -103,8 +103,7 @@ async def _(event):
     
 @register(outgoing=True, pattern="^\.deezload (.+?|) (FLAC|MP3\_320|MP3\_256|MP3\_128)")
 async def _(event):
-    """DeezLoader by @An0nimia
-    Ported for UniBorg by @SpEcHlDe"""
+    """`Copyright © Daeng Server Bot`"""
     if event.fwd_from:
         return
 
@@ -242,11 +241,11 @@ async def upload_track(track_location, message):
 CMD_HELP.update({
     "getmusic":
     ">`.netease <Artist - Song Title>`"
-    "\nUsage: Download music with @WooMaiBot"
+    "\nUsage: Download Musik Berasama @WooMaiBot"
     "\n\n>`.sdd <Spotify/Deezer Link>`"
-    "\nUsage: Download music from Spotify or Deezer"
+    "\nUsage: Download Musik Dari Spotify Dan Deezer"
     "\n\n>`.smd <Artist - Song Title>`"
-    "\nUsage: Download music from Spotify"
+    "\nUsage: Download Musik Dari Spotify"
     "\n\n>`.deezload` <spotify/deezer link> <Format>"
     "\nUsage: Download music from deezer."
     "\n__Format=__ `FLAC`, `MP3_320`, `MP3_256`, `MP3_128`."
