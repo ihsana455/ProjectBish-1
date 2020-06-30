@@ -26,14 +26,14 @@ async def kbg(remob):
     if remob.reply_to_msg_id:
         message_id = remob.reply_to_msg_id
         reply_message = await remob.get_reply_message()
-        await remob.edit("`Processing..`")
+        await remob.edit("`Sedang di proses....`")
         try:
             if isinstance(
                     reply_message.media, MessageMediaPhoto
             ) or "image" in reply_message.media.document.mime_type.split('/'):
                 downloaded_file_name = await remob.client.download_media(
                     reply_message, TEMP_DOWNLOAD_DIRECTORY)
-                await remob.edit("`Removing background from this image..`")
+                await remob.edit("`Sedang menghapus kenangan di Foto ini :(`")
                 output_file_name = await ReTrieveFile(downloaded_file_name)
                 os.remove(downloaded_file_name)
             else:
@@ -54,7 +54,7 @@ async def kbg(remob):
             await remob.client.send_file(
                 remob.chat_id,
                 remove_bg_image,
-                caption="Background removed using remove.bg",
+                caption="`Sukses menghapus kenangan menggunakan Daeng Server Bot hehehe`",
                 force_document=True,
                 reply_to=message_id)
             await remob.delete()
