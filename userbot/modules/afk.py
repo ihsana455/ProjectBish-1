@@ -46,10 +46,9 @@ async def set_afk(afk_e):
     afk_start = start_1.replace(microsecond=0)
     if string:
         AFKREASON = string
-        await afk_e.edit(f"**Into the Void!**\
-        \nReason: `{string}`")
+        await afk_e.edit(f"`{string}`")
     else:
-        await afk_e.edit("**Into The Void!**")
+        await afk_e.edit("`Proses Bunuh Diri`")
     if BOTLOG:
         await afk_e.client.send_message(BOTLOG_CHATID, "#AFK\nYou went Away from Keyboard!")
     ISAFK = True
@@ -72,7 +71,7 @@ async def type_afk_is_not_true(notafk):
     afk_end = back_alive.replace(microsecond=0)
     if ISAFK:
         ISAFK = False
-        msg = await notafk.edit("**I'm back BISH!**")
+        msg = await notafk.edit("`Saya Kembali Bro🔥🤣`")
         time.sleep(3)
         await msg.delete()
         if BOTLOG:
@@ -106,7 +105,7 @@ async def mention_afk(mention):
     global afk_end
     back_alivee = datetime.now()
     afk_end = back_alivee.replace(microsecond=0)
-    afk_since = "**a while ago**"
+    afk_since = "**Terakhir Aktif**"
     if mention.message.mentioned and not (await mention.get_sender()).bot:
         if ISAFK:
             now = datetime.now()
@@ -138,18 +137,15 @@ async def mention_afk(mention):
                 afk_since = f"`{int(seconds)}s` ago"
             if mention.sender_id not in USERS:
                 if AFKREASON:
-                    await mention.reply(f"**Mohon maaf, bos saya sedang tidak aktif.** (Since **{afk_since}**).\
-                        \nReason: `{AFKREASON}`")
+                    await mention.reply(f"`{AFKREASON}`")
                 else:
-                    await mention.reply(f"**Mohon maaf, bos saya sedang tidak aktif.** (Since **{afk_since}**).\
-                        \n**Please come back later**")
+                    await mention.reply(f"`Silahkan Kembali Lagi Bulan Depan`")
                 USERS.update({mention.sender_id: 1})
                 COUNT_MSG = COUNT_MSG + 1
             elif mention.sender_id in USERS:
                 if USERS[mention.sender_id] % randint(2, 4) == 0:
                     if AFKREASON:
-                        await mention.reply(f"**Mohon maaf, bos saya sedang tidak aktif.** (Since **{afk_since}**).\
-                            \nReason: `{AFKREASON}`")
+                        await mention.reply(f"`{AFKREASON}`")
                     else:
                         await mention.reply(f"**Mohon maaf, bos saya sedang tidak aktif.** (Since **{afk_since}**).\
                         \n**Silahkan kembali 1 abad kemudian :v**")
@@ -216,18 +212,15 @@ async def afk_on_pm(sender):
                 afk_since = f"`{int(seconds)}s` ago"
             if sender.sender_id not in USERS:
                 if AFKREASON:
-                    await sender.reply(f"**Mohon maaf, bos saya sedang tidak aktif.** (Since **{afk_since}**).\
-                        \nReason: `{AFKREASON}`")
+                    await sender.reply(f"`{AFKREASON}`")
                 else:
-                    await sender.reply(f"**Mohon maaf, bos saya sedang tidak aktif.** (Since **{afk_since}**).\
-                        \n**Silahkan chat lagi 1 tahun kedepan**")
+                    await sender.reply(f"`Silahkan chat lagi 1 tahun kedepan`")
                 USERS.update({sender.sender_id: 1})
                 COUNT_MSG = COUNT_MSG + 1
             elif apprv and sender.sender_id in USERS:
                 if USERS[sender.sender_id] % randint(2, 4) == 0:
                     if AFKREASON:
-                        await sender.reply(f"**Mohon maaf, bos saya sedang tidak aktif.** (Since **{afk_since}**).\
-                            \nReason: `{AFKREASON}`")
+                        await sender.reply(f"`{AFKREASON}`")
                     else:
                         await sender.reply(f"**Mohon maaf, bos saya sedang tidak aktif.** (Since **{afk_since}**).\
                         \n**Please come back later**")
