@@ -50,7 +50,7 @@ async def set_afk(afk_e):
     else:
         await afk_e.edit("`Proses Bunuh Diri`")
     if BOTLOG:
-        await afk_e.client.send_message(BOTLOG_CHATID, "#AFK\nYou went Away from Keyboard!")
+        await afk_e.client.send_message(BOTLOG_CHATID, "#AFK\nSorry, Gw Sekarang Lagi **OFFLINE**!")
     ISAFK = True
     afk_time = datetime.now()  # pylint:disable=E0602
     raise StopPropagation
