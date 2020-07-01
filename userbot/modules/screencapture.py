@@ -18,7 +18,7 @@ from userbot import CMD_HELP
 @register(pattern="^\.ss (.*)", outgoing=True)
 async def capture(url):
     """ For .ss command, capture a website's screenshot and send the photo. """
-    await url.edit("`Processing...`")
+    await url.edit("`Sedang di proses...`")
     chrome_options = await options()
     chrome_options.add_argument("--test-type")
     chrome_options.add_argument("--ignore-certificate-errors")
@@ -29,7 +29,7 @@ async def capture(url):
     if link_match:
         link = link_match.group()
     else:
-        return await url.edit("`I need a valid link to take screenshots from.`")
+        return await url.edit("`Masukin link yang bener bos -_- hadehhh `")
     driver.get(link)
     height = driver.execute_script(
         "return Math.max(document.body.scrollHeight, document.body.offsetHeight, "
@@ -57,7 +57,7 @@ async def capture(url):
         message_id = url.reply_to_msg_id
     with io.BytesIO(im_png) as out_file:
         out_file.name = "screencapture.png"
-        await url.edit("`Uploading screenshot as file..`")
+        await url.edit("`Sedang mengupload screenshot hehe sabar yaa`")
         await url.client.send_file(url.chat_id,
                                    out_file,
                                    caption=input_str,
