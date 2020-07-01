@@ -4,7 +4,7 @@ import requests
 from userbot import CMD_HELP
 from userbot.events import register
 
-PLACE = 'INDONESIA'
+PLACE = 'Asia/Makassar'
 
 
 @register(pattern="^\.adzan(?: |$)(.*)")
@@ -45,7 +45,9 @@ async def get_adzan(adzan):
                  f"**Zuhur :** `{zuhur}`\n"
                  f"**Ashar :** `{ashar}`\n"
                  f"**Maghrib :** `{maghrib}`\n"
-                 f"**Isya :** `{isya}`\n")
+                 f"**Isya :** `{isya}`\n"
+                 f"\n"
+                 f"Copyright © Daeng Server Bot\n")
 
     await adzan.edit(result)
 
